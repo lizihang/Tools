@@ -44,7 +44,7 @@ public class BtnTitleStrategy implements TitleStrategy
 		}
 		if (btnMap.containsKey(oldValue))
 		{
-			attr.setValue("${RES.$." + btnMap.get(oldValue) + "}?" + oldValue + "}");
+			attr.setValue("${RES.$." + btnMap.get(oldValue) + "?" + oldValue + "}");
 		} else
 		{
 			String msg = String.format("---name=%s的<%s>标签title在资源文件中未配置！旧值为：%s", element.attributeValue("name"), element.getName(), oldValue);
