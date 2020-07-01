@@ -46,7 +46,7 @@ public class CTitleStrategy implements TitleStrategy
 		//固定列要判断字段名和title都一致的时候才替换
 		if (fColMap.containsKey(columnName) && oldValue.equals(fColMap.get(columnName)))
 		{
-			attr.setValue("${RES.$." + columnName + "}?" + oldValue + "}");
+			attr.setValue("${RES.$." + columnName + "?" + oldValue + "}");
 		} else
 		{
 			// 2020-6-30 修改不替换res.c只保留中文
