@@ -27,7 +27,7 @@ import java.io.File;
 public class ModifyTitlePage extends Container
 {
 	private static final long serialVersionUID = 1986288621554901346L;
-	JLabel       label0  = new JLabel("资源文件选择ResBundleFT-TRD");//功能说明
+	JLabel       label0  = new JLabel("资源文件选择ResBundleFT-TRD_zh_CN.inf");//功能说明
 	JLabel       label1  = new JLabel("选择资源文件");
 	JLabel       label2  = new JLabel("选择文件目录");
 	JTextField   text1   = new JTextField();
@@ -46,7 +46,7 @@ public class ModifyTitlePage extends Container
 		label2.setBounds(10, 70, WindowsConstant.LABEL_WIDTH + 20, WindowsConstant.COMMON_HEIGHT);
 		text1.setBounds(80 + 20, 40, WindowsConstant.TEXT_WIDTH - 20, WindowsConstant.COMMON_HEIGHT);
 		text1.setEditable(false);
-		text1.setText("D:/snsoft90/sn_ft/ft-trd/trd-ui/src/main/resources/cfg/resbundle/ResBundleFT-TRD.inf");
+		text1.setText("D:/snsoft90/sn_ft/ft-trd/trd-ui/src/main/resources/cfg/resbundle/ResBundleFT-TRD_zh_CN.inf");
 		text2.setBounds(80 + 20, 70, WindowsConstant.TEXT_WIDTH - 20, WindowsConstant.COMMON_HEIGHT);
 		text2.setEditable(false);
 		button1.setBounds(290, 40, WindowsConstant.BUTTON_WIDTH, WindowsConstant.COMMON_HEIGHT);
