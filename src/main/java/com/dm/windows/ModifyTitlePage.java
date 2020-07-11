@@ -69,7 +69,7 @@ public class ModifyTitlePage extends Container
 				if (resPath.length() == 0 || filePath.length() == 0)
 				{
 					//ERR:请选择目录!
-					JOptionPane.showMessageDialog(null, CommonConstant.ERR00001);
+					JOptionPane.showMessageDialog(null, CommonConstant.ERR00002);
 					return;
 				}
 				new WriteMsgThread(area).start();

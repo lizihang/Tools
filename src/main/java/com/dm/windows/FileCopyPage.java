@@ -76,7 +76,7 @@ public class FileCopyPage extends Container
 				if (from.length() == 0 || to.length() == 0)
 				{
 					//ERR:请选择目录!
-					JOptionPane.showMessageDialog(null, CommonConstant.ERR00001);
+					JOptionPane.showMessageDialog(null, CommonConstant.ERR00002);
 					return;
 				}
 				String suffix = comboBox.getSelectedItem().toString();
