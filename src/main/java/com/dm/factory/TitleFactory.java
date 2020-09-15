@@ -28,6 +28,7 @@ public class TitleFactory
 		strategyMap.put(DomConstant.C_NAME, new CTitleStrategy());
 		// btn和attr用同一个strategy
 		strategyMap.put(DomConstant.BTN_NAME, new BtnTitleStrategy());
+		strategyMap.put(DomConstant.O_NAME, new OTitleStrategy());
 		strategyMap.put(DomConstant.GRID_NAME, new GridTitleStrategy());
 		strategyMap.put(DomConstant.RECORD_NAME, new RecordTitleStrategy());
 	}

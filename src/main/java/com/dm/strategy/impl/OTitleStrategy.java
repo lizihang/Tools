@@ -17,11 +17,11 @@ import java.util.Map;
  * <p>作者：lizh</p>
  * <p>审核：</p>
  * <p>重构：</p>
- * <p>创建日期：2020年06月25日 13:55</p>
- * <p>类全名：com.dm.strategy.impl.CTitleStrategy</p>
+ * <p>创建日期：2020年09月15日 16:58</p>
+ * <p>类全名：com.dm.strategy.impl.OTitleStrategy</p>
  * 查看帮助：<a href="" target="_blank"></a>
  */
-public class CTitleStrategy implements TitleStrategy
+public class OTitleStrategy implements TitleStrategy
 {
 	@Override
 	public void modifyTitle(Element element)
@@ -52,12 +52,6 @@ public class CTitleStrategy implements TitleStrategy
 			// 2020-6-30 修改不替换res.c只保留中文
 			attr.setValue(oldValue);
 			// attr.setValue("${RES.C?" + oldValue + "}");
-		}
-		// 特殊处理 fromsys-系统下发
-		if (columnName.contains("fromsys#"))
-		{
-			columnName = columnName.substring(0, columnName.indexOf("#"));
-			attr.setValue("${RES.$." + columnName + "?" + oldValue + "}");
 		}
 	}
 }

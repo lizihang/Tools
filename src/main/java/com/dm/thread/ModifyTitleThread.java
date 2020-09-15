@@ -5,6 +5,7 @@ import com.dm.constant.DomConstant;
 import com.dm.data.DomResData;
 import com.dm.factory.TitleFactory;
 import com.dm.queue.ProgressQueue;
+import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
@@ -55,8 +56,15 @@ public class ModifyTitleThread extends Thread
 				System.out.println("--------------------------------------------------");
 				System.out.println("---开始修改文件：" + fPath);
 				Document doc = saxReader.read(fPath);
-				//获取根节点
-				modifyTitle(doc.getRootElement());
+				// 获取根节点，增加all_c_columns属性
+				Element root = doc.getRootElement();
+				Attribute acc = root.attribute("all_c_columns");
+				if (acc == null)
+				{
+					root.addAttribute("all_c_columns", "true");
+				}
+				// 递归修改标签title
+				modifyTitle(root);
 				String newFile = fPath.replace(".xml", "-new.xml");
 				XMLWriter xmlWriter = new XMLWriter(new FileOutputStream(new File(newFile)));
 				xmlWriter.write(doc);
@@ -93,6 +101,9 @@ public class ModifyTitleThread extends Thread
 			case DomConstant.ATTR_NAME:
 				TitleFactory.getStrategy(DomConstant.BTN_NAME).modifyTitle(element);
 				break;
+			//Operate标签
+			case DomConstant.O_NAME:
+				TitleFactory.getStrategy(DomConstant.O_NAME).modifyTitle(element);
 			//grid表
 			case DomConstant.GRID_NAME:
 				TitleFactory.getStrategy(DomConstant.GRID_NAME).modifyTitle(element);

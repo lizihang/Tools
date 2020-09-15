@@ -1,7 +1,6 @@
 package com.dm;
 
 import com.dm.windows.HomePage;
-import com.dm.windows.LoginPage;
 /**
  * <p>标题：启动类</p>
  * <p>功能：</p>
@@ -19,6 +18,7 @@ public class App
 {
 	public static void main(String[] args)
 	{
-		new LoginPage();
+		// new LoginPage();
+		new HomePage();
 	}
 }
