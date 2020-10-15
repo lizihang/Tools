@@ -61,41 +61,65 @@ public class DomResData
 		btnMap.clear();
 		try
 		{
-			File file = new File(resPath);
-			//中文乱码
-			InputStreamReader isr = new InputStreamReader(new FileInputStream(file), "UTF-8");
-			BufferedReader input = new BufferedReader(isr);
-			String text;
-			boolean fCol = false;
-			while ((text = input.readLine()) != null)
-			{
-				// 1.处理固定列
-				if (text.contains("固定列开始"))
-				{
-					fCol = true;
-				}
-				if (text.contains("固定列结束"))
-				{
-					fCol = false;
-				}
-				if (fCol && text.contains("="))
-				{
-					fColMap.put(text.split("=")[0], text.split("=")[1]);
-				}
-				// 2.处理按钮map
-				if (text.startsWith("title.F.btn"))
-				{
-					//反向map，将资源文件值作为key，资源文件键作为value
-					btnMap.put(text.split("=")[1], text.split("=")[0]);
-				}
-			}
+			readRes("D:/snsoft90/sn_ft/ft-code/code-ui/src/main/resources/cfg/resbundle/ResBundleFT-COMM_zh_CN.inf");
+			readRes(resPath);
 		} catch (Exception e)
 		{
-			//TODO 打印错误信息
 			ProgressQueue.getInstance().putMsg("错误信息:" + Arrays.toString(e.getStackTrace()));
-			System.out.println(Arrays.toString(e.getStackTrace()));
-			System.out.println(e.getMessage());
-			//e.printStackTrace();
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 读取单个资源文件
+	 * @param resPath 资源文件路径
+	 * @throws Exception
+	 */
+	private void readRes(String resPath) throws Exception
+	{
+		File file = new File(resPath);
+		//中文乱码
+		InputStreamReader isr = new InputStreamReader(new FileInputStream(file), "UTF-8");
+		BufferedReader input = new BufferedReader(isr);
+		String text;
+		boolean fCol = false;
+		while ((text = input.readLine()) != null)
+		{
+			// 1.处理固定列
+			if (text.contains("固定列开始"))
+			{
+				fCol = true;
+			}
+			if (text.contains("固定列结束"))
+			{
+				fCol = false;
+			}
+			if (fCol && text.contains("="))
+			{
+				String key = text.split("=")[0];
+				String value = text.split("=")[1];
+				if (fColMap.get(key) != null)
+				{
+					ProgressQueue.getInstance().putMsg("固定列map已存在key：" + key + "，请核对资源文件！");
+				} else
+				{
+					fColMap.put(key, value);
+				}
+			}
+			// 2.处理按钮map
+			if (text.startsWith("title.F.btn"))
+			{
+				//反向map，将资源文件值作为key，资源文件键作为value
+				String key = text.split("=")[1];
+				String value = text.split("=")[0];
+				if (btnMap.get(key) != null)
+				{
+					ProgressQueue.getInstance().putMsg("按钮map已存在key：" + key + "，请核对资源文件！");
+				} else
+				{
+					btnMap.put(key,value);
+				}
+			}
 		}
 	}
 
