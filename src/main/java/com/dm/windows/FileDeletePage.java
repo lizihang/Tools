@@ -40,7 +40,7 @@ public class FileDeletePage extends Container
 
 	public FileDeletePage()
 	{
-		jfc.setCurrentDirectory(new File("D:/snsoft90/sn_ft/ft-trd/trd-ui/src/main/resources/cfg"));//文件选择器的初始目录定为d盘
+		jfc.setCurrentDirectory(new File("D:/snsoft90/sn_ft/ft-sna/ft-sna/sna-ui/src/main/resources/cfg/ui/res/FT-SNA"));//文件选择器的初始目录定为d盘
 		label0.setBounds(10, 10, 400, 20);
 		label1.setBounds(10, 40, 70, 20);
 		label2.setBounds(10, 70, 400, 20);

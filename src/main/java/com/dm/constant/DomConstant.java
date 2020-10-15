@@ -15,11 +15,13 @@ package com.dm.constant;
  */
 public class DomConstant
 {
-	public static final String C_NAME      = "c";
-	public static final String BTN_NAME    = "ToolbarBtn";
-	public static final String ATTR_NAME   = "attr";
-	public static final String O_NAME      = "Operate";
-	public static final String GRID_NAME   = "GridTable";
-	public static final String RECORD_NAME = "RecordTable";
-	public static final String FILE_SUFFIX = "xml";
+	public static final String C_NAME       = "c";
+	public static final String BTN_NAME     = "ToolbarBtn";
+	public static final String ATTR_NAME    = "attr";
+	public static final String O_NAME       = "Operate";
+	public static final String GRID_NAME    = "GridTable";
+	public static final String DIALOG_NAME  = "DialogPane";
+	public static final String TOOLBAR_NAME = "Toolbar";
+	public static final String RECORD_NAME  = "RecordTable";
+	public static final String FILE_SUFFIX  = "xml";
 }

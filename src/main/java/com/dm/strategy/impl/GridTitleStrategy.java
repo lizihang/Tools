@@ -1,6 +1,9 @@
 package com.dm.strategy.impl;
 
+import com.dm.queue.ProgressQueue;
 import com.dm.strategy.TitleStrategy;
+import com.dm.util.DomUtil;
+import org.dom4j.Attribute;
 import org.dom4j.Element;
 /**
  * <p>标题：</p>
@@ -20,5 +23,19 @@ public class GridTitleStrategy implements TitleStrategy
 	@Override
 	public void modifyTitle(Element element)
 	{
+		Attribute attr = element.attribute("title");
+		if (attr == null)
+		{
+			element.addAttribute("title", "${RES.T}");
+			return;
+		}
+		String oldValue = DomUtil.getAttrValue(attr);
+		if ("NoValue".equals(oldValue))
+		{
+			String msg = String.format("---name=%s的<%s>标签title未设置中文值！", element.attributeValue("name"), element.getName());
+			ProgressQueue.getInstance().putMsg(msg);
+			System.out.println(msg);
+		}
+		attr.setValue("${RES.T?" + oldValue + "}");
 	}
 }

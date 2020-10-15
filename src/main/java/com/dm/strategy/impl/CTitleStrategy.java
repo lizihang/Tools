@@ -59,5 +59,10 @@ public class CTitleStrategy implements TitleStrategy
 			columnName = columnName.substring(0, columnName.indexOf("#"));
 			attr.setValue("${RES.$." + columnName + "?" + oldValue + "}");
 		}
+		// 特殊处理 cuicode-商户，商户编码，有的中文是商户，固定列中是商户编码，所以有的匹配不上
+		if (columnName.equals("cuicode"))
+		{
+			attr.setValue("${RES.$." + columnName + "?商户编码}");
+		}
 	}
 }

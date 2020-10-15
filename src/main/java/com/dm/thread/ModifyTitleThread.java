@@ -63,6 +63,15 @@ public class ModifyTitleThread extends Thread
 				{
 					root.addAttribute("all_c_columns", "true");
 				}
+				Attribute title = root.attribute("title");
+				if (title == null)
+				{
+					root.addAttribute("title", "${}");
+				} else
+				{
+					// TODO 暂时不替换，方便看名称
+					// title.setValue("${}");
+				}
 				// 递归修改标签title
 				modifyTitle(root);
 				String newFile = fPath.replace(".xml", "-new.xml");
@@ -104,8 +113,13 @@ public class ModifyTitleThread extends Thread
 			//Operate标签
 			case DomConstant.O_NAME:
 				TitleFactory.getStrategy(DomConstant.O_NAME).modifyTitle(element);
+				break;
 			//grid表
 			case DomConstant.GRID_NAME:
+				//查询面板
+			case DomConstant.DIALOG_NAME:
+				//工具条
+			case DomConstant.TOOLBAR_NAME:
 				TitleFactory.getStrategy(DomConstant.GRID_NAME).modifyTitle(element);
 				modifyTitle(element);
 				break;
