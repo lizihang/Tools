@@ -101,35 +101,30 @@ public class ModifyTitleThread extends Thread
 			String elementName = element.getName();
 			switch (elementName)
 			{
-			//c标签
-			case DomConstant.C_NAME:
+			case DomConstant.C_NAME://c标签
 				TitleFactory.getStrategy(DomConstant.C_NAME).modifyTitle(element);
 				break;
-			//按钮
-			case DomConstant.BTN_NAME:
-			case DomConstant.ATTR_NAME:
+			case DomConstant.BTN_NAME://按钮
+			case DomConstant.ATTR_NAME://按钮
 				TitleFactory.getStrategy(DomConstant.BTN_NAME).modifyTitle(element);
 				break;
-			//Operate标签
-			case DomConstant.O_NAME:
+			case DomConstant.O_NAME://Operate标签
 				TitleFactory.getStrategy(DomConstant.O_NAME).modifyTitle(element);
 				break;
-			//grid表
-			case DomConstant.GRID_NAME:
-				//查询面板
-			case DomConstant.DIALOG_NAME:
-				//工具条
-			case DomConstant.TOOLBAR_NAME:
+			case DomConstant.GRID_NAME://grid表
+			case DomConstant.DIALOG_NAME://查询面板
+			case DomConstant.TOOLBAR_NAME://工具条
+			case DomConstant.RECORD_NAME://record表
 				TitleFactory.getStrategy(DomConstant.GRID_NAME).modifyTitle(element);
 				modifyTitle(element);
 				break;
-			//record表
+			/* 2020-10-15 注释掉，因为和上边的一样，title改成${RES.T?xxx}
 			case DomConstant.RECORD_NAME:
 				TitleFactory.getStrategy(DomConstant.RECORD_NAME).modifyTitle(element);
 				modifyTitle(element);
 				break;
-			//不是以上的，递归调用
-			default:
+			*/
+			default://不是以上的，递归调用
 				modifyTitle(element);
 			}
 		}

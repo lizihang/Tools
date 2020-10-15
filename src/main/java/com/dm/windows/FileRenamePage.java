@@ -41,7 +41,7 @@ public class FileRenamePage extends Container
 	public FileRenamePage()
 	{
 		//jfc.setCurrentDirectory(new File("D:\\"));//文件选择器的初始目录定为d盘
-		jfc.setCurrentDirectory(new File("D:/snsoft90/sn_ft/ft-trd/trd-ui/src/main/resources/cfg"));//文件选择器的初始目录定为d盘
+		jfc.setCurrentDirectory(new File("D:/snsoft90/sn_ft/ft-sna/ft-sna/sna-ui/src/main/resources/cfg/ui/res/FT-SNA"));//文件选择器的初始目录定为d盘
 		label0.setBounds(10, 10, 400, WindowsConstant.COMMON_HEIGHT);
 		label1.setBounds(10, 40, WindowsConstant.LABEL_WIDTH + 20, WindowsConstant.COMMON_HEIGHT);
 		label2.setBounds(10, 70, WindowsConstant.LABEL_WIDTH, WindowsConstant.COMMON_HEIGHT);

@@ -100,7 +100,7 @@ public class DomResData
 				String value = text.split("=")[1];
 				if (fColMap.get(key) != null)
 				{
-					ProgressQueue.getInstance().putMsg("固定列map已存在key：" + key + "，请核对资源文件！");
+					ProgressQueue.getInstance().putMsg("固定列map已存在key：" + key + "，请核对资源文件！当前value：" + value);
 				} else
 				{
 					fColMap.put(key, value);
@@ -114,10 +114,10 @@ public class DomResData
 				String value = text.split("=")[0];
 				if (btnMap.get(key) != null)
 				{
-					ProgressQueue.getInstance().putMsg("按钮map已存在key：" + key + "，请核对资源文件！");
+					ProgressQueue.getInstance().putMsg("按钮map已存在key：" + key + "，请核对资源文件！当前value：" + value);
 				} else
 				{
-					btnMap.put(key,value);
+					btnMap.put(key, value);
 				}
 			}
 		}
