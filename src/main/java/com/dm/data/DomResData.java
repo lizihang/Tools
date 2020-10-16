@@ -47,7 +47,10 @@ public class DomResData
 
 	public void init(String resPath, String filePath)
 	{
-		initRes(resPath);
+		if (resPath != null)
+		{
+			initRes(resPath);
+		}
 		initFiles(filePath);
 	}
 
@@ -121,6 +124,9 @@ public class DomResData
 				}
 			}
 		}
+		//关闭流
+		input.close();
+		isr.close();
 	}
 
 	/**
