@@ -32,7 +32,7 @@ public class GridTitleStrategy implements TitleStrategy
 		String oldValue = DomUtil.getAttrValue(attr);
 		if ("NoValue".equals(oldValue))
 		{
-			String msg = String.format("---name=%s的<%s>标签title未设置中文值！", element.attributeValue("name"), element.getName());
+			String msg = String.format("---<%s name=%s>标签的title未设置中文值！", element.getName(), element.attributeValue("name"));
 			ProgressQueue.getInstance().putMsg(msg);
 			System.out.println(msg);
 		}

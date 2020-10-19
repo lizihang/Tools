@@ -30,7 +30,7 @@ public class BtnTitleStrategy implements TitleStrategy
 		Attribute attr = element.attribute("title");
 		if (attr == null)
 		{
-			String msg = String.format("---name=%s的<%s>标签没有title属性！父标签类型<%s>，name=%s", element.attributeValue("name"), element.getName(), element.getParent().getName(), element.getParent().attributeValue("name"));
+			String msg = String.format("---<%s name=%s>标签没有title属性！父标签<%s name=%s>", element.getName(), element.attributeValue("name"), element.getParent().getName(), element.getParent().attributeValue("name"));
 			ProgressQueue.getInstance().putMsg(msg);
 			System.out.println(msg);
 			return;
@@ -38,7 +38,7 @@ public class BtnTitleStrategy implements TitleStrategy
 		String oldValue = DomUtil.getAttrValue(attr);
 		if ("NoValue".equals(oldValue))
 		{
-			String msg = String.format("---name=%s的<%s>标签title未设置中文值！", element.attributeValue("name"), element.getName());
+			String msg = String.format("---<%s name=%s>标签的title未设置中文值！", element.getName(), element.attributeValue("name"));
 			ProgressQueue.getInstance().putMsg(msg);
 			System.out.println(msg);
 		}
@@ -47,7 +47,7 @@ public class BtnTitleStrategy implements TitleStrategy
 			attr.setValue("${RES.$." + btnMap.get(oldValue) + "?" + oldValue + "}");
 		} else
 		{
-			String msg = String.format("---name=%s的<%s>标签title在资源文件中未配置！旧值为：%s", element.attributeValue("name"), element.getName(), oldValue);
+			String msg = String.format("---<%s name=%s>标签title在资源文件中未配置！旧值为：%s", element.getName(), element.attributeValue("name"), oldValue);
 			ProgressQueue.getInstance().putMsg(msg);
 			System.out.println(msg);
 			attr.setValue(oldValue);
