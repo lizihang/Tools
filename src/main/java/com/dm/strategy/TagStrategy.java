@@ -1,8 +1,10 @@
 package com.dm.strategy;
 
 import org.dom4j.Element;
+
+import java.util.Map;
 /**
- * <p>标题：</p>
+ * <p>标题：标签处理策略接口</p>
  * <p>功能：</p>
  * <pre>
  * 其他说明：策略模式，用于优化多if-else代码
@@ -14,7 +16,9 @@ import org.dom4j.Element;
  * <p>类全名：com.dm.strategy.TitleStrategy</p>
  * 查看帮助：<a href="" target="_blank"></a>
  */
-public interface TitleStrategy
+public interface TagStrategy
 {
 	void modifyTitle(Element element);
+
+	void modifyProp(Element element, Map<String,Map<String,String>> props);
 }

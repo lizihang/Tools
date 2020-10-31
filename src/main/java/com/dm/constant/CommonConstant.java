@@ -23,6 +23,7 @@ public class CommonConstant
 	public static final String ERR00000   = "请输入用户名或密码!";
 	public static final String ERR00001   = "用户名或密码错误!";
 	public static final String ERR00002   = "请选择目录!";
+	public static final String ERR00003   = "请设置标签属性!";
 	/** 开始提示语 */
 	//public static final String START_MSG  = "修改xml文件title--开始！";
 	/** 完成提示语 */

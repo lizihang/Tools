@@ -24,6 +24,7 @@ public class HomePage
 	//Container   page3   = new FileDownloadPage();//布局3
 	Container   page4   = new FileRenamePage();//布局4
 	Container   page5   = new ModifyTitlePage();//布局5
+	Container   page6   = new ModifyPropPage();//布局6
 
 	public HomePage()
 	{
@@ -31,13 +32,14 @@ public class HomePage
 		double lx = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 		double ly = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 		frame.setLocation(new Point((int) (lx / 2) - 350, (int) (ly / 2) - 250));//设定窗口出现位置
-		frame.setSize(400, 440);//设定窗口大小
+		frame.setSize(500, 440);//设定窗口大小
 		frame.setContentPane(tabPane);//设置布局
 		tabPane.add("文件复制", page1);
 		tabPane.add("文件删除", page2);
 		//tabPane.add("文件下载", page3);
 		tabPane.add("文件重命名", page4);
 		tabPane.add("修改文件title", page5);
+		tabPane.add("修改标签属性", page6);
 		frame.setVisible(true);//窗口可见
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//使能关闭窗口，结束程序
 	}

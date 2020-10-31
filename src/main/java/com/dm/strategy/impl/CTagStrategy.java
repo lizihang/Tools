@@ -2,7 +2,7 @@ package com.dm.strategy.impl;
 
 import com.dm.data.DomResData;
 import com.dm.queue.ProgressQueue;
-import com.dm.strategy.TitleStrategy;
+import com.dm.strategy.TagStrategy;
 import com.dm.util.DomUtil;
 import org.dom4j.Attribute;
 import org.dom4j.Element;
@@ -17,11 +17,11 @@ import java.util.Map;
  * <p>作者：lizh</p>
  * <p>审核：</p>
  * <p>重构：</p>
- * <p>创建日期：2020年09月15日 16:58</p>
- * <p>类全名：com.dm.strategy.impl.OTitleStrategy</p>
+ * <p>创建日期：2020年06月25日 13:55</p>
+ * <p>类全名：com.dm.strategy.impl.CTitleStrategy</p>
  * 查看帮助：<a href="" target="_blank"></a>
  */
-public class OTitleStrategy implements TitleStrategy
+public class CTagStrategy implements TagStrategy
 {
 	@Override
 	public void modifyTitle(Element element)
@@ -53,5 +53,27 @@ public class OTitleStrategy implements TitleStrategy
 			attr.setValue(oldValue);
 			// attr.setValue("${RES.C?" + oldValue + "}");
 		}
+		// 特殊处理 fromsys-系统下发
+		if (columnName.contains("fromsys#"))
+		{
+			columnName = columnName.substring(0, columnName.indexOf("#"));
+			attr.setValue("${RES.$." + columnName + "?" + oldValue + "}");
+		}
+		// 特殊处理 fromfile-文件
+		if (columnName.contains("fromfile#"))
+		{
+			columnName = columnName.substring(0, columnName.indexOf("#"));
+			attr.setValue("${RES.$." + columnName + "?" + oldValue + "}");
+		}
+		// 特殊处理 cuicode-商户，商户编码，有的中文是商户，固定列中是商户编码，所以有的匹配不上
+		if (columnName.equals("cuicode"))
+		{
+			attr.setValue("${RES.$." + columnName + "?商户编码}");
+		}
+	}
+
+	@Override
+	public void modifyProp(Element element, Map<String,Map<String,String>> props)
+	{
 	}
 }

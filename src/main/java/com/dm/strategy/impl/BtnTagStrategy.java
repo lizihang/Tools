@@ -2,7 +2,7 @@ package com.dm.strategy.impl;
 
 import com.dm.data.DomResData;
 import com.dm.queue.ProgressQueue;
-import com.dm.strategy.TitleStrategy;
+import com.dm.strategy.TagStrategy;
 import com.dm.util.DomUtil;
 import org.dom4j.Attribute;
 import org.dom4j.Element;
@@ -21,7 +21,7 @@ import java.util.Map;
  * <p>类全名：com.dm.strategy.impl.BtnTitleStrategy</p>
  * 查看帮助：<a href="" target="_blank"></a>
  */
-public class BtnTitleStrategy implements TitleStrategy
+public class BtnTagStrategy implements TagStrategy
 {
 	@Override
 	public void modifyTitle(Element element)
@@ -52,5 +52,10 @@ public class BtnTitleStrategy implements TitleStrategy
 			System.out.println(msg);
 			attr.setValue(oldValue);
 		}
+	}
+
+	@Override
+	public void modifyProp(Element element, Map<String,Map<String,String>> props)
+	{
 	}
 }

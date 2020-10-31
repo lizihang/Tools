@@ -1,7 +1,9 @@
 package com.dm.strategy.impl;
 
-import com.dm.strategy.TitleStrategy;
+import com.dm.strategy.TagStrategy;
 import org.dom4j.Element;
+
+import java.util.Map;
 /**
  * <p>标题：</p>
  * <p>功能：</p>
@@ -15,10 +17,15 @@ import org.dom4j.Element;
  * <p>类全名：com.dm.strategy.impl.RecordTitleStrategy</p>
  * 查看帮助：<a href="" target="_blank"></a>
  */
-public class RecordTitleStrategy implements TitleStrategy
+public class RecordTagStrategy implements TagStrategy
 {
 	@Override
 	public void modifyTitle(Element element)
+	{
+	}
+
+	@Override
+	public void modifyProp(Element element, Map<String,Map<String,String>> props)
 	{
 	}
 }

@@ -3,7 +3,7 @@ package com.dm.thread;
 import com.dm.constant.CommonConstant;
 import com.dm.constant.DomConstant;
 import com.dm.data.DomResData;
-import com.dm.factory.TitleFactory;
+import com.dm.factory.TagFactory;
 import com.dm.queue.ProgressQueue;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
@@ -94,28 +94,28 @@ public class ModifyTitleThread extends Thread
 
 	private void modifyTitle(Element rootElement)
 	{
-		Iterator it = rootElement.elementIterator();
+		Iterator<Element> it = rootElement.elementIterator();
 		while (it.hasNext())
 		{
-			Element element = (Element) it.next();
+			Element element = it.next();
 			String elementName = element.getName();
 			switch (elementName)
 			{
 			case DomConstant.C_NAME://c标签
-				TitleFactory.getStrategy(DomConstant.C_NAME).modifyTitle(element);
+				TagFactory.getStrategy(DomConstant.C_NAME).modifyTitle(element);
 				break;
 			case DomConstant.BTN_NAME://按钮
 			case DomConstant.ATTR_NAME://按钮
-				TitleFactory.getStrategy(DomConstant.BTN_NAME).modifyTitle(element);
+				TagFactory.getStrategy(DomConstant.BTN_NAME).modifyTitle(element);
 				break;
 			case DomConstant.O_NAME://Operate标签
-				TitleFactory.getStrategy(DomConstant.O_NAME).modifyTitle(element);
+				TagFactory.getStrategy(DomConstant.O_NAME).modifyTitle(element);
 				break;
 			case DomConstant.GRID_NAME://grid表
 			case DomConstant.DIALOG_NAME://查询面板
 			case DomConstant.TOOLBAR_NAME://工具条
 			case DomConstant.RECORD_NAME://record表
-				TitleFactory.getStrategy(DomConstant.GRID_NAME).modifyTitle(element);
+				TagFactory.getStrategy(DomConstant.GRID_NAME).modifyTitle(element);
 				modifyTitle(element);
 				break;
 			/* 2020-10-15 注释掉，因为和上边的一样，title改成${RES.T?xxx}
