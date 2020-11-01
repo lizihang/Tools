@@ -26,7 +26,7 @@ import java.io.File;
  */
 public class ModifyPropPage extends Container
 {
-	JLabel            label0   = new JLabel("修改标签属性，Json格式");//功能说明
+	JLabel            label0   = new JLabel("例：aname:{tipIfOverflow=true,fixedLeft=false};aname1:{tipIfOverflow=false,fixedLeft=true}");//功能说明
 	JLabel            label1   = new JLabel("选择文件目录");
 	JLabel            label2   = new JLabel("选择标签类型");
 	JLabel            label3   = new JLabel("设置标签属性");
