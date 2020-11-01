@@ -49,8 +49,12 @@ public class ModifyPropThread extends Thread
 		// 0.初始化资源文件等数据
 		DomResData resData = DomResData.getInstance();
 		resData.init(null, filePath);
-		// TODO 验证props格式，并转成map
-		Map<String,Map<String,String>> params = StringUtils.jsonToMap(props);
+		// 将prop转成map
+		Map<String,Map<String,String>> params = StringUtils.strToMap(props);
+		if (params == null)
+		{
+			return;
+		}
 		// 1.获取目录下所有xml文件
 		SAXReader saxReader = new SAXReader();
 		try

@@ -53,9 +53,4 @@ public class BtnTagStrategy implements TagStrategy
 			attr.setValue(oldValue);
 		}
 	}
-
-	@Override
-	public void modifyProp(Element element, Map<String,Map<String,String>> props)
-	{
-	}
 }

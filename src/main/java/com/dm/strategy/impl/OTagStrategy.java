@@ -54,9 +54,4 @@ public class OTagStrategy implements TagStrategy
 			// attr.setValue("${RES.C?" + oldValue + "}");
 		}
 	}
-
-	@Override
-	public void modifyProp(Element element, Map<String,Map<String,String>> props)
-	{
-	}
 }

@@ -75,7 +75,7 @@ public class ModifyPropPage extends Container
 				{
 					String filePath = text1.getText();
 					String tagName = comboBox.getSelectedItem().toString();
-					String props = text2.getText();
+					String props = text2.getText().trim();
 					if (filePath.length() == 0)
 					{
 						//ERR:请选择目录!

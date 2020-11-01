@@ -5,8 +5,6 @@ import com.dm.strategy.TagStrategy;
 import com.dm.util.DomUtil;
 import org.dom4j.Attribute;
 import org.dom4j.Element;
-
-import java.util.Map;
 /**
  * <p>标题：</p>
  * <p>功能：</p>
@@ -39,10 +37,5 @@ public class GridTagStrategy implements TagStrategy
 			System.out.println(msg);
 		}
 		attr.setValue("${RES.T?" + oldValue + "}");
-	}
-
-	@Override
-	public void modifyProp(Element element, Map<String,Map<String,String>> props)
-	{
 	}
 }

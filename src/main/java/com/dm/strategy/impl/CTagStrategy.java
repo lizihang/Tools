@@ -71,9 +71,4 @@ public class CTagStrategy implements TagStrategy
 			attr.setValue("${RES.$." + columnName + "?商户编码}");
 		}
 	}
-
-	@Override
-	public void modifyProp(Element element, Map<String,Map<String,String>> props)
-	{
-	}
 }
