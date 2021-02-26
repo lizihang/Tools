@@ -13,7 +13,9 @@ import org.dom4j.io.XMLWriter;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 /**
  * <p>标题：</p>
  * <p>功能：</p>
@@ -44,34 +46,23 @@ public class ModifyTitleThread extends Thread
 		// 0.初始化资源文件等数据
 		DomResData resData = DomResData.getInstance();
 		resData.init(resPath, filePath);
+		List<String> errFileList = new ArrayList<>();
 		// 1.获取目录下所有xml文件
 		SAXReader saxReader = new SAXReader();
-		try
+		ProgressQueue.getInstance().putMsg(String.format(CommonConstant.START_MSG, "修改文件title"));
+		for (String fPath : resData.getFiles())
 		{
-			ProgressQueue.getInstance().putMsg(String.format(CommonConstant.START_MSG, "修改文件title"));
-			for (String fPath : resData.getFiles())
+			ProgressQueue.getInstance().putMsg("--------------------------------------------------");
+			ProgressQueue.getInstance().putMsg("---开始修改文件：" + fPath);
+			System.out.println("--------------------------------------------------");
+			System.out.println("---开始修改文件：" + fPath);
+			try
 			{
-				ProgressQueue.getInstance().putMsg("--------------------------------------------------");
-				ProgressQueue.getInstance().putMsg("---开始修改文件：" + fPath);
-				System.out.println("--------------------------------------------------");
-				System.out.println("---开始修改文件：" + fPath);
 				Document doc = saxReader.read(fPath);
 				// 获取根节点，增加all_c_columns属性
 				Element root = doc.getRootElement();
-				Attribute acc = root.attribute("all_c_columns");
-				if (acc == null)
-				{
-					root.addAttribute("all_c_columns", "true");
-				}
-				Attribute title = root.attribute("title");
-				if (title == null)
-				{
-					root.addAttribute("title", "${}");
-				} else
-				{
-					// TODO 暂时不替换，方便看名称
-					// title.setValue("${}");
-				}
+				// TODO 修改根节点，是否提成单独的功能
+				modifyRoot(root);
 				// 递归修改标签title
 				modifyTitle(root);
 				String newFile = fPath.replace(".xml", "-new.xml");
@@ -79,19 +70,52 @@ public class ModifyTitleThread extends Thread
 				xmlWriter.write(doc);
 				xmlWriter.flush();
 				xmlWriter.close();
-				ProgressQueue.getInstance().putMsg("---文件：" + fPath + "修改完成");
-				ProgressQueue.getInstance().putMsg("--------------------------------------------------");
-				System.out.println("---文件：" + fPath + "修改完成");
-				System.out.println("--------------------------------------------------");
+			} catch (Exception e)
+			{
+				errFileList.add(fPath);
+				e.printStackTrace();
 			}
-			ProgressQueue.getInstance().putMsg(String.format(CommonConstant.END_MSG, "修改文件title"));
-		} catch (Exception e)
+			ProgressQueue.getInstance().putMsg("---文件：" + fPath + "修改完成");
+			ProgressQueue.getInstance().putMsg("--------------------------------------------------");
+			System.out.println("---文件：" + fPath + "修改完成");
+			System.out.println("--------------------------------------------------");
+		}
+		ProgressQueue.getInstance().putMsg(errFileStr(errFileList));
+		System.out.println(errFileStr(errFileList));
+		ProgressQueue.getInstance().putMsg(String.format(CommonConstant.END_MSG, "修改文件title"));
+	}
+
+	/**
+	 * 修改根节点属性
+	 * @param root 根节点
+	 */
+	private void modifyRoot(Element root)
+	{
+		Attribute acc = root.attribute("all_c_columns");
+		if (acc == null)
 		{
-			//System.out.println("modifyFile方法报错，错误信息为："+ Arrays.toString(e.getStackTrace()));
-			e.printStackTrace();
+			root.addAttribute("all_c_columns", "true");
+		}
+		Attribute title = root.attribute("title");
+		if (title == null)
+		{
+			root.addAttribute("title", "${}");
+		} else
+		{
+			// TODO 暂时不替换，方便看名称
+			// title.setValue("${}");
+		}
+		Attribute options0 = root.attribute("options0");
+		if (options0 == null)
+		{
+			root.addAttribute("options0", "32");
 		}
 	}
 
+	/**
+	 * 修改title
+	 * @param rootElement
+	 */
 	private void modifyTitle(Element rootElement)
 	{
 		Iterator<Element> it = rootElement.elementIterator();
@@ -128,5 +152,22 @@ public class ModifyTitleThread extends Thread
 				modifyTitle(element);
 			}
 		}
+	}
+
+	/**
+	 * 输出错误字符串
+	 * @param errFileList
+	 * @return
+	 */
+	private String errFileStr(List<String> errFileList)
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append("错误文件数量：").append(errFileList.size()).append(";\r\n");
+		sb.append("错误文件列表：").append("\r\n");
+		for (String str : errFileList)
+		{
+			sb.append(str).append("\r\n");
+		}
+		return sb.toString();
 	}
 }

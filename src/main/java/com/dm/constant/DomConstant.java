@@ -1,7 +1,7 @@
 package com.dm.constant;
 
 /**
- * <p>标题：</p>
+ * <p>标题：xml文件标签名常量</p>
  * <p>功能：</p>
  * <pre>
  * 其他说明：

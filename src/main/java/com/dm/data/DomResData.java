@@ -45,6 +45,11 @@ public class DomResData
 		return resData;
 	}
 
+	/**
+	 * 初始化
+	 * @param resPath 资源文件路径
+	 * @param filePath 文件路径
+	 */
 	public void init(String resPath, String filePath)
 	{
 		if (resPath != null)
@@ -141,6 +146,11 @@ public class DomResData
 		getAllModifyFiles(filePath);
 	}
 
+	/**
+	 * TODO 和下个方法提取成一个？过滤条件？
+	 * 递归获取目录下所有文件
+	 * @param path 目录
+	 */
 	private void getAllFiles(String path)
 	{
 		File root = new File(path);
@@ -152,8 +162,9 @@ public class DomResData
 		File[] folder = root.listFiles();
 		if (folder == null)
 		{
-			ProgressQueue.getInstance().putMsg(root.getAbsolutePath() + "目录下没有内容");
-			System.out.println("该文件夹下没有内容！");
+			ProgressQueue.getInstance().putMsg(path + "目录下没有内容");
+			System.out.println(path + "目录下没有内容");
+			return;
 		}
 		for (File f : folder)
 		{
@@ -183,7 +194,8 @@ public class DomResData
 		if (folder == null)
 		{
 			ProgressQueue.getInstance().putMsg(path + "目录下没有内容");
-			System.out.println("该文件夹下没有内容！");
+			System.out.println(path + "目录下没有内容");
+			return;
 		}
 		for (File f : folder)
 		{

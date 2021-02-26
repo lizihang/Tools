@@ -1,7 +1,7 @@
 package com.dm.constant;
 
 /**
- * <p>标题：</p>
+ * <p>标题：系统常量</p>
  * <p>功能：</p>
  * <pre>
  * 其他说明：
@@ -25,8 +25,4 @@ public class CommonConstant
 	public static final String ERR00002   = "请选择目录!";
 	public static final String ERR00003   = "请设置标签属性!";
 	public static final String ERR00004   = "标签属性字符串有误!";
-	/** 开始提示语 */
-	//public static final String START_MSG  = "修改xml文件title--开始！";
-	/** 完成提示语 */
-	//public static final String END_MSG    = "修改xml文件title--完成！";
 }

@@ -1,7 +1,6 @@
 package com.dm.thread;
 
 import com.dm.constant.CommonConstant;
-import com.dm.data.DomResData;
 import com.dm.queue.ProgressQueue;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
@@ -57,7 +56,7 @@ public class FileDeleteThread extends Thread
 			}
 		} else
 		{
-			RegexFileFilter regexFileFilter = new RegexFileFilter("^.[a-zA-Z]+" + regex + ".xml$");
+			RegexFileFilter regexFileFilter = new RegexFileFilter("^.[a-zA-Z0-9_]+" + regex + ".xml$");
 			Collection<File> files = FileUtils.listFiles(new File(filePath), regexFileFilter, DirectoryFileFilter.INSTANCE);
 			for (File f : files)
 			{
