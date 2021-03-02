@@ -1,9 +1,12 @@
 package com.dm.data;
 
-import com.dm.constant.DomConstant;
+import com.dm.constant.DmConstants;
 import com.dm.queue.ProgressQueue;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 import java.util.*;
 /**
  * <p>标题：</p>
@@ -174,7 +177,7 @@ public class DomResData
 			} else
 			{
 				String fileType = f.getName().substring(f.getName().lastIndexOf(".") + 1);
-				if (fileType.equals(DomConstant.FILE_SUFFIX) && !f.getAbsolutePath().contains("-new") && !f.getAbsolutePath().contains("-bak"))
+				if (fileType.equals(DmConstants.FILE_SUFFIX) && !f.getAbsolutePath().contains("-new") && !f.getAbsolutePath().contains("-bak"))
 				{
 					files.add(f.getAbsolutePath());
 				}
@@ -205,7 +208,7 @@ public class DomResData
 			} else
 			{
 				String fileType = f.getName().substring(f.getName().lastIndexOf(".") + 1);
-				if (fileType.equals(DomConstant.FILE_SUFFIX) && f.getAbsolutePath().contains("-new"))
+				if (fileType.equals(DmConstants.FILE_SUFFIX) && f.getAbsolutePath().contains("-new"))
 				{
 					mfiles.add(f.getAbsolutePath());
 				}

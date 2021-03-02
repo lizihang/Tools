@@ -1,6 +1,6 @@
 package com.dm.listener;
 
-import com.dm.constant.CommonConstant;
+import com.dm.constant.DmConstants;
 import com.dm.service.LoginService;
 import com.dm.windows.HomePage;
 
@@ -43,7 +43,7 @@ public class LoginButtonListener implements ActionListener
 		if (username.length() == 0 || password.length() == 0)
 		{
 			//ERR:请输入用户名或密码!
-			JOptionPane.showMessageDialog(null, CommonConstant.ERR00000);
+			JOptionPane.showMessageDialog(null, DmConstants.ERR00000);
 		}
 		boolean isLogin = service.login(username, password);
 		if (isLogin)
@@ -52,7 +52,7 @@ public class LoginButtonListener implements ActionListener
 			frame.dispose();
 		} else
 		{
-			JOptionPane.showMessageDialog(null, CommonConstant.ERR00001);
+			JOptionPane.showMessageDialog(null, DmConstants.ERR00001);
 		}
 	}
 }

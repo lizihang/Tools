@@ -1,7 +1,5 @@
 package com.dm.util;
 
-import com.dm.constant.FileConstant;
-
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;

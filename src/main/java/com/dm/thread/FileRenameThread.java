@@ -1,6 +1,6 @@
 package com.dm.thread;
 
-import com.dm.constant.CommonConstant;
+import com.dm.constant.DmConstants;
 import com.dm.data.DomResData;
 import com.dm.queue.ProgressQueue;
 
@@ -38,12 +38,12 @@ public class FileRenameThread extends Thread
 		// 0.初始化资源文件等数据
 		DomResData resData = DomResData.getInstance();
 		resData.init(null, filePath);
-		ProgressQueue.getInstance().putMsg(String.format(CommonConstant.START_MSG, "文件重命名"));
+		ProgressQueue.getInstance().putMsg(String.format(DmConstants.START_MSG, "文件重命名"));
 		List<String> files = resData.getFiles();
 		List<String> mfiles = resData.getMfiles();
 		rename(files, ".xml", "-bak.xml");
 		rename(mfiles, "-new.xml", ".xml");
-		ProgressQueue.getInstance().putMsg(String.format(CommonConstant.END_MSG, "文件重命名"));
+		ProgressQueue.getInstance().putMsg(String.format(DmConstants.END_MSG, "文件重命名"));
 	}
 
 	private void rename(List<String> files, String target, String replacement)

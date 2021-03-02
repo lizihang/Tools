@@ -1,6 +1,6 @@
 package com.dm.factory;
 
-import com.dm.constant.DomConstant;
+import com.dm.constant.DmConstants;
 import com.dm.strategy.TagStrategy;
 import com.dm.strategy.impl.*;
 
@@ -25,12 +25,12 @@ public class TagFactory
 
 	static
 	{
-		strategyMap.put(DomConstant.C_NAME, new CTagStrategy());
+		strategyMap.put(DmConstants.C_NAME, new CTagStrategy());
 		// btn和attr用同一个strategy
-		strategyMap.put(DomConstant.BTN_NAME, new BtnTagStrategy());
-		strategyMap.put(DomConstant.O_NAME, new OTagStrategy());
-		strategyMap.put(DomConstant.GRID_NAME, new GridTagStrategy());
-		strategyMap.put(DomConstant.RECORD_NAME, new RecordTagStrategy());
+		strategyMap.put(DmConstants.BTN_NAME, new BtnTagStrategy());
+		strategyMap.put(DmConstants.O_NAME, new OTagStrategy());
+		strategyMap.put(DmConstants.GRID_NAME, new GridTagStrategy());
+		strategyMap.put(DmConstants.RECORD_NAME, new RecordTagStrategy());
 	}
 
 	private TagFactory()

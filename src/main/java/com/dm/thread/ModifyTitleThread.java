@@ -1,7 +1,6 @@
 package com.dm.thread;
 
-import com.dm.constant.CommonConstant;
-import com.dm.constant.DomConstant;
+import com.dm.constant.DmConstants;
 import com.dm.data.DomResData;
 import com.dm.factory.TagFactory;
 import com.dm.queue.ProgressQueue;
@@ -49,7 +48,7 @@ public class ModifyTitleThread extends Thread
 		List<String> errFileList = new ArrayList<>();
 		// 1.获取目录下所有xml文件
 		SAXReader saxReader = new SAXReader();
-		ProgressQueue.getInstance().putMsg(String.format(CommonConstant.START_MSG, "修改文件title"));
+		ProgressQueue.getInstance().putMsg(String.format(DmConstants.START_MSG, "修改文件title"));
 		for (String fPath : resData.getFiles())
 		{
 			ProgressQueue.getInstance().putMsg("--------------------------------------------------");
@@ -61,8 +60,10 @@ public class ModifyTitleThread extends Thread
 				Document doc = saxReader.read(fPath);
 				// 获取根节点，增加all_c_columns属性
 				Element root = doc.getRootElement();
+				// TODO
+				// readRootAttr(root);
 				// TODO 修改根节点，是否提成单独的功能
-				modifyRoot(root);
+				// modifyRoot(root);
 				// 递归修改标签title
 				modifyTitle(root);
 				String newFile = fPath.replace(".xml", "-new.xml");
@@ -72,7 +73,7 @@ public class ModifyTitleThread extends Thread
 				xmlWriter.close();
 			} catch (Exception e)
 			{
-				errFileList.add(fPath);
+				errFileList.add(fPath + ";" + e.getMessage());
 				e.printStackTrace();
 			}
 			ProgressQueue.getInstance().putMsg("---文件：" + fPath + "修改完成");
@@ -82,7 +83,7 @@ public class ModifyTitleThread extends Thread
 		}
 		ProgressQueue.getInstance().putMsg(errFileStr(errFileList));
 		System.out.println(errFileStr(errFileList));
-		ProgressQueue.getInstance().putMsg(String.format(CommonConstant.END_MSG, "修改文件title"));
+		ProgressQueue.getInstance().putMsg(String.format(DmConstants.END_MSG, "修改文件title"));
 	}
 
 	/**
@@ -112,6 +113,24 @@ public class ModifyTitleThread extends Thread
 		}
 	}
 
+	private void readRootAttr(Element root)
+	{
+		Attribute options0 = root.attribute("options0");
+		if (options0 == null)
+		{
+			String msg = "该文件options0属性为空！";
+			throw new RuntimeException(msg);
+		} else
+		{
+			String value = options0.getValue();
+			if (!value.equals("32"))
+			{
+				String msg = "该文件options0属性值不等于32，当前值为：" + value;
+				throw new RuntimeException(msg);
+			}
+		}
+	}
+
 	/**
 	 * 修改title
 	 * @param rootElement
@@ -125,21 +144,21 @@ public class ModifyTitleThread extends Thread
 			String elementName = element.getName();
 			switch (elementName)
 			{
-			case DomConstant.C_NAME://c标签
-				TagFactory.getStrategy(DomConstant.C_NAME).modifyTitle(element);
+			case DmConstants.C_NAME://c标签
+				TagFactory.getStrategy(DmConstants.C_NAME).modifyTitle(element);
 				break;
-			case DomConstant.BTN_NAME://按钮
-			case DomConstant.ATTR_NAME://按钮
-				TagFactory.getStrategy(DomConstant.BTN_NAME).modifyTitle(element);
+			case DmConstants.BTN_NAME://按钮
+			case DmConstants.ATTR_NAME://按钮
+				TagFactory.getStrategy(DmConstants.BTN_NAME).modifyTitle(element);
 				break;
-			case DomConstant.O_NAME://Operate标签
-				TagFactory.getStrategy(DomConstant.O_NAME).modifyTitle(element);
+			case DmConstants.O_NAME://Operate标签
+				TagFactory.getStrategy(DmConstants.O_NAME).modifyTitle(element);
 				break;
-			case DomConstant.GRID_NAME://grid表
-			case DomConstant.DIALOG_NAME://查询面板
-			case DomConstant.TOOLBAR_NAME://工具条
-			case DomConstant.RECORD_NAME://record表
-				TagFactory.getStrategy(DomConstant.GRID_NAME).modifyTitle(element);
+			case DmConstants.GRID_NAME://grid表
+			case DmConstants.DIALOG_NAME://查询面板
+			case DmConstants.TOOLBAR_NAME://工具条
+			case DmConstants.RECORD_NAME://record表
+				TagFactory.getStrategy(DmConstants.GRID_NAME).modifyTitle(element);
 				modifyTitle(element);
 				break;
 			/* 2020-10-15 注释掉，因为和上边的一样，title改成${RES.T?xxx}

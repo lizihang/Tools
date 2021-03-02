@@ -1,7 +1,6 @@
 package com.dm.windows;
 
-import com.dm.constant.CommonConstant;
-import com.dm.constant.WindowsConstant;
+import com.dm.constant.DmConstants;
 import com.dm.listener.ChooseButtonListener;
 import com.dm.thread.FileCopyThread;
 import com.dm.thread.WriteMsgThread;
@@ -43,25 +42,25 @@ public class FileCopyPage extends Container
 	public FileCopyPage()
 	{
 		jfc.setCurrentDirectory(new File("D:\\"));//文件选择器的初始目录定为d盘
-		label0.setBounds(10, 10, 400, WindowsConstant.COMMON_HEIGHT);
-		label1.setBounds(10, 40, WindowsConstant.LABEL_WIDTH, WindowsConstant.COMMON_HEIGHT);
-		label2.setBounds(10, 70, WindowsConstant.LABEL_WIDTH, WindowsConstant.COMMON_HEIGHT);
-		label3.setBounds(10, 100, WindowsConstant.LABEL_WIDTH, WindowsConstant.COMMON_HEIGHT);
-		text1.setBounds(80, 40, WindowsConstant.TEXT_WIDTH, WindowsConstant.COMMON_HEIGHT);
+		label0.setBounds(10, 10, 400, DmConstants.HEIGHT_COMMON);
+		label1.setBounds(10, 40, DmConstants.WIDTH_LABEL, DmConstants.HEIGHT_COMMON);
+		label2.setBounds(10, 70, DmConstants.WIDTH_LABEL, DmConstants.HEIGHT_COMMON);
+		label3.setBounds(10, 100, DmConstants.WIDTH_LABEL, DmConstants.HEIGHT_COMMON);
+		text1.setBounds(80, 40, DmConstants.WIDTH_TEXT, DmConstants.HEIGHT_COMMON);
 		text1.setEditable(false);
-		text2.setBounds(80, 70, WindowsConstant.TEXT_WIDTH, WindowsConstant.COMMON_HEIGHT);
+		text2.setBounds(80, 70, DmConstants.WIDTH_TEXT, DmConstants.HEIGHT_COMMON);
 		text2.setEditable(false);
-		comboBox.setBounds(80, 100, WindowsConstant.BOX_WIDTH, WindowsConstant.COMMON_HEIGHT);
+		comboBox.setBounds(80, 100, DmConstants.WIDTH_BOX, DmConstants.HEIGHT_COMMON);
 		comboBox.addItem("xml");
 		comboBox.addItem("txt");
 		comboBox.addItem("exe");
 		comboBox.addItem("jar");
-		button1.setBounds(290, 40, WindowsConstant.BUTTON_WIDTH, WindowsConstant.COMMON_HEIGHT);
-		button2.setBounds(290, 70, WindowsConstant.BUTTON_WIDTH, WindowsConstant.COMMON_HEIGHT);
-		execute.setBounds(290, 100, WindowsConstant.BUTTON_WIDTH, WindowsConstant.COMMON_HEIGHT);
+		button1.setBounds(290, 40, DmConstants.WIDTH_BUTTON, DmConstants.HEIGHT_COMMON);
+		button2.setBounds(290, 70, DmConstants.WIDTH_BUTTON, DmConstants.HEIGHT_COMMON);
+		execute.setBounds(290, 100, DmConstants.WIDTH_BUTTON, DmConstants.HEIGHT_COMMON);
 		area.setLineWrap(true);//如果内容过长，自动换行，在文本域加上滚动条，水平和垂直滚动条始终出现。
 		JScrollPane scrollPane = new JScrollPane(area, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(10, 150, WindowsConstant.AREA_WIDTH, WindowsConstant.AREA_HEIGHT);
+		scrollPane.setBounds(10, 150, DmConstants.WIDTH_AREA, DmConstants.HEIGHT_AREA);
 		//选择路径按钮的监听
 		button1.addActionListener(new ChooseButtonListener(jfc, text1, JFileChooser.DIRECTORIES_ONLY));
 		button2.addActionListener(new ChooseButtonListener(jfc, text2, JFileChooser.DIRECTORIES_ONLY));
@@ -76,7 +75,7 @@ public class FileCopyPage extends Container
 				if (from.length() == 0 || to.length() == 0)
 				{
 					//ERR:请选择目录!
-					JOptionPane.showMessageDialog(null, CommonConstant.ERR00002);
+					JOptionPane.showMessageDialog(null, DmConstants.ERR00002);
 					return;
 				}
 				String suffix = comboBox.getSelectedItem().toString();

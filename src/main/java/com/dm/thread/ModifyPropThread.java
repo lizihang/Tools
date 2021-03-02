@@ -1,6 +1,6 @@
 package com.dm.thread;
 
-import com.dm.constant.CommonConstant;
+import com.dm.constant.DmConstants;
 import com.dm.data.DomResData;
 import com.dm.factory.TagFactory;
 import com.dm.queue.ProgressQueue;
@@ -59,7 +59,7 @@ public class ModifyPropThread extends Thread
 		SAXReader saxReader = new SAXReader();
 		try
 		{
-			ProgressQueue.getInstance().putMsg(String.format(CommonConstant.START_MSG, "批量修改标签属性"));
+			ProgressQueue.getInstance().putMsg(String.format(DmConstants.START_MSG, "批量修改标签属性"));
 			for (String fPath : resData.getFiles())
 			{
 				ProgressQueue.getInstance().putMsg("--------------------------------------------------");
@@ -81,7 +81,7 @@ public class ModifyPropThread extends Thread
 				System.out.println("---文件：" + fPath + "修改完成");
 				System.out.println("--------------------------------------------------");
 			}
-			ProgressQueue.getInstance().putMsg(String.format(CommonConstant.END_MSG, "批量修改标签属性"));
+			ProgressQueue.getInstance().putMsg(String.format(DmConstants.END_MSG, "批量修改标签属性"));
 		} catch (Exception e)
 		{
 			e.printStackTrace();

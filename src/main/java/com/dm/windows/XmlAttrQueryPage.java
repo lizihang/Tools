@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 /**
- * <p>标题：</p>
+ * <p>标题：xml文件属性查询页</p>
  * <p>功能：</p>
  * <pre>
  * 其他说明：
@@ -19,11 +19,11 @@ import java.io.File;
  * <p>作者：lizh</p>
  * <p>审核：</p>
  * <p>重构：</p>
- * <p>创建日期：2020年06月25日 16:49</p>
- * <p>类全名：com.dm.windows.ModifyTitlePage</p>
+ * <p>创建日期：2021年03月02日 17:36</p>
+ * <p>类全名：com.dm.windows.XmlAttrQueryPage</p>
  * 查看帮助：<a href="" target="_blank"></a>
  */
-public class ModifyTitlePage extends Container
+public class XmlAttrQueryPage extends Container
 {
 	private static final long serialVersionUID = 1986288621554901346L;
 	JLabel       label0  = new JLabel("资源文件已自动加载ResBundleFT-COMM_zh_CN.inf");//功能说明
@@ -37,7 +37,7 @@ public class ModifyTitlePage extends Container
 	JButton      execute = new JButton("执行");
 	JFileChooser jfc     = new JFileChooser();//文件选择器
 
-	public ModifyTitlePage()
+	public XmlAttrQueryPage()
 	{
 		// jfc.setCurrentDirectory(new File("D:/snsoft90/sn_ft"));//文件选择器的初始目录定为d盘
 		jfc.setCurrentDirectory(new File("D:/snsoft90/sn_ft/ft-sna/ft-sna/sna-ui/src/main/resources/cfg/ui/res/FT-SNA"));//文件选择器的初始目录定为d盘

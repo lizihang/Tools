@@ -1,17 +1,9 @@
 package com.dm.windows;
 
-import com.dm.constant.CommonConstant;
-import com.dm.constant.WindowsConstant;
-import com.dm.listener.ChooseButtonListener;
 import com.dm.listener.LoginButtonListener;
-import com.dm.thread.FileCopyThread;
-import com.dm.thread.WriteMsgThread;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
 /**
  * <p>标题：</p>
  * <p>功能：</p>

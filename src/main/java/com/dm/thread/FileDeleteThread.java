@@ -1,6 +1,6 @@
 package com.dm.thread;
 
-import com.dm.constant.CommonConstant;
+import com.dm.constant.DmConstants;
 import com.dm.queue.ProgressQueue;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
@@ -42,8 +42,8 @@ public class FileDeleteThread extends Thread
 	@Override
 	public void run()
 	{
-		System.out.println(String.format(CommonConstant.START_MSG, "文件删除"));
-		ProgressQueue.getInstance().putMsg(String.format(CommonConstant.START_MSG, "文件删除"));
+		System.out.println(String.format(DmConstants.START_MSG, "文件删除"));
+		ProgressQueue.getInstance().putMsg(String.format(DmConstants.START_MSG, "文件删除"));
 		if (this.regex == null)
 		{
 			try
@@ -73,7 +73,7 @@ public class FileDeleteThread extends Thread
 				}
 			}
 		}
-		System.out.println(String.format(CommonConstant.END_MSG, "文件删除"));
-		ProgressQueue.getInstance().putMsg(String.format(CommonConstant.END_MSG, "文件删除"));
+		System.out.println(String.format(DmConstants.END_MSG, "文件删除"));
+		ProgressQueue.getInstance().putMsg(String.format(DmConstants.END_MSG, "文件删除"));
 	}
 }

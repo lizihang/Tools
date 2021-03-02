@@ -1,6 +1,6 @@
 package com.dm.util;
 
-import com.dm.constant.CommonConstant;
+import com.dm.constant.DmConstants;
 import com.dm.queue.ProgressQueue;
 
 import java.util.HashMap;
@@ -61,7 +61,7 @@ public class StringUtils
 		} catch (ArrayIndexOutOfBoundsException e)
 		{
 			//标签属性字符串有误!
-			ProgressQueue.getInstance().putMsg(CommonConstant.ERR00004);
+			ProgressQueue.getInstance().putMsg(DmConstants.ERR00004);
 			return null;
 		}
 		System.out.println(result);
