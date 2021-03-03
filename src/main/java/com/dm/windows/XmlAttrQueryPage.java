@@ -2,7 +2,6 @@ package com.dm.windows;
 
 import com.dm.constant.DmConstants;
 import com.dm.listener.ChooseButtonListener;
-import com.dm.thread.ModifyTitleThread;
 import com.dm.thread.WriteMsgThread;
 
 import javax.swing.*;
@@ -26,64 +25,135 @@ import java.io.File;
 public class XmlAttrQueryPage extends Container
 {
 	private static final long serialVersionUID = 1986288621554901346L;
-	JLabel       label0  = new JLabel("资源文件已自动加载ResBundleFT-COMM_zh_CN.inf");//功能说明
-	JLabel       label1  = new JLabel("选择资源文件");
-	JLabel       label2  = new JLabel("选择文件目录");
-	JTextField   text1   = new JTextField();
-	JTextField   text2   = new JTextField();
-	JTextArea    area    = new JTextArea(3, 20);//构造一个文本域
-	JButton      button1 = new JButton("选择");
-	JButton      button2 = new JButton("选择");
-	JButton      execute = new JButton("执行");
-	JFileChooser jfc     = new JFileChooser();//文件选择器
+	JLabel            label1     = new JLabel("选择文件目录");
+	JLabel            label2     = new JLabel("标签名称");
+	JTextField        text1      = new JTextField();
+	JTextArea         area       = new JTextArea(3, 20);//构造一个文本域
+	JButton           button1    = new JButton("选择");
+	JButton           execute    = new JButton("查询");
+	JButton           reset      = new JButton("重置");
+	JFileChooser      jfc        = new JFileChooser();//文件选择器
+	// 标签下拉框
+	JComboBox<String> tagBox1    = new JComboBox<>();
+	JComboBox<String> tagBox2    = new JComboBox<>();
+	JComboBox<String> tagBox3    = new JComboBox<>();
+	// 属性名
+	JTextField        attrName1  = new JTextField();
+	JTextField        attrName2  = new JTextField();
+	JTextField        attrName3  = new JTextField();
+	// 运算符下拉框
+	JComboBox<String> opBox1     = new JComboBox<>();
+	JComboBox<String> opBox2     = new JComboBox<>();
+	JComboBox<String> opBox3     = new JComboBox<>();
+	// 属性值
+	JTextField        attrValue1 = new JTextField();
+	JTextField        attrValue2 = new JTextField();
+	JTextField        attrValue3 = new JTextField();
 
 	public XmlAttrQueryPage()
 	{
-		// jfc.setCurrentDirectory(new File("D:/snsoft90/sn_ft"));//文件选择器的初始目录定为d盘
-		jfc.setCurrentDirectory(new File("D:/snsoft90/sn_ft/ft-sna/ft-sna/sna-ui/src/main/resources/cfg/ui/res/FT-SNA"));//文件选择器的初始目录定为d盘
-		label0.setBounds(10, 10, 400, DmConstants.HEIGHT_COMMON);
-		label1.setBounds(10, 40, DmConstants.WIDTH_LABEL + 20, DmConstants.HEIGHT_COMMON);
-		label2.setBounds(10, 70, DmConstants.WIDTH_LABEL + 20, DmConstants.HEIGHT_COMMON);
-		text1.setBounds(80 + 20, 40, DmConstants.WIDTH_TEXT - 20, DmConstants.HEIGHT_COMMON);
+		// jfc.setCurrentDirectory(new File("D:/snsoft90/sn_ft/ft-sna/ft-sna/sna-ui/src/main/resources/cfg/ui/res/FT-SNA"));
+		jfc.setCurrentDirectory(new File("D:/snsoft90/sn_ft"));
+		label1.setBounds(10, 10, DmConstants.WIDTH_LABEL, DmConstants.HEIGHT_COMMON);
+		text1.setBounds(10 + DmConstants.WIDTH_LABEL, 10, DmConstants.WIDTH_TEXT + 100, DmConstants.HEIGHT_COMMON);
 		text1.setEditable(false);
-		text1.setText("D:/snsoft90/sn_ft/ft-sna/ft-sna/sna-ui/src/main/resources/cfg/resbundle/ResBundleFT-SNA_zh_CN.inf");
-		text2.setBounds(80 + 20, 70, DmConstants.WIDTH_TEXT - 20, DmConstants.HEIGHT_COMMON);
-		text2.setEditable(false);
-		button1.setBounds(290, 40, DmConstants.WIDTH_BUTTON, DmConstants.HEIGHT_COMMON);
-		button2.setBounds(290, 70, DmConstants.WIDTH_BUTTON, DmConstants.HEIGHT_COMMON);
-		execute.setBounds(290, 100, DmConstants.WIDTH_BUTTON, DmConstants.HEIGHT_COMMON);
+		button1.setBounds(420, 10, DmConstants.WIDTH_BUTTON, DmConstants.HEIGHT_COMMON);
+		// 查询条件1
+		tagBox1.setBounds(10, 40, DmConstants.WIDTH_BOX, DmConstants.HEIGHT_COMMON);
+		tagBox1.addItem("");
+		tagBox1.addItem("c");
+		attrName1.setBounds(10 + 100, 40, DmConstants.WIDTH_LABEL, DmConstants.HEIGHT_COMMON);
+		opBox1.setBounds(10 + 200, 40, DmConstants.WIDTH_BOX, DmConstants.HEIGHT_COMMON);
+		opBox1.addItem("=");
+		opBox1.addItem(">");
+		opBox1.addItem("<");
+		attrValue1.setBounds(10 + 300, 40, DmConstants.WIDTH_LABEL, DmConstants.HEIGHT_COMMON);
+		// 查询条件2
+		tagBox2.setBounds(10, 70, DmConstants.WIDTH_BOX, DmConstants.HEIGHT_COMMON);
+		attrName2.setBounds(10 + 100, 70, DmConstants.WIDTH_LABEL, DmConstants.HEIGHT_COMMON);
+		opBox2.setBounds(10 + 200, 70, DmConstants.WIDTH_BOX, DmConstants.HEIGHT_COMMON);
+		opBox2.addItem("=");
+		opBox2.addItem(">");
+		opBox2.addItem("<");
+		attrValue2.setBounds(10 + 300, 70, DmConstants.WIDTH_LABEL, DmConstants.HEIGHT_COMMON);
+		// 查询条件3
+		tagBox3.setBounds(10, 100, DmConstants.WIDTH_BOX, DmConstants.HEIGHT_COMMON);
+		attrName3.setBounds(10 + 100, 100, DmConstants.WIDTH_LABEL, DmConstants.HEIGHT_COMMON);
+		opBox3.setBounds(10 + 200, 100, DmConstants.WIDTH_BOX, DmConstants.HEIGHT_COMMON);
+		opBox3.addItem("=");
+		opBox3.addItem(">");
+		opBox3.addItem("<");
+		attrValue3.setBounds(10 + 300, 100, DmConstants.WIDTH_LABEL, DmConstants.HEIGHT_COMMON);
+		// 按钮
+		reset.setBounds(420, 70, DmConstants.WIDTH_BUTTON, DmConstants.HEIGHT_COMMON);
+		execute.setBounds(420, 100, DmConstants.WIDTH_BUTTON, DmConstants.HEIGHT_COMMON);
+		// 结果
 		area.setLineWrap(true);//如果内容过长，自动换行，在文本域加上滚动条，水平和垂直滚动条始终出现。
+		area.setEditable(false);
 		JScrollPane scrollPane = new JScrollPane(area, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(10, 150, DmConstants.WIDTH_AREA, DmConstants.HEIGHT_AREA);
-		//选择路径按钮的监听
-		button1.addActionListener(new ChooseButtonListener(jfc, text1, JFileChooser.FILES_ONLY));
-		button2.addActionListener(new ChooseButtonListener(jfc, text2, JFileChooser.FILES_AND_DIRECTORIES));
-		//执行按钮的监听
+		scrollPane.setBounds(10, 130, DmConstants.WIDTH_AREA, DmConstants.HEIGHT_AREA);
+		// 选择路径按钮的监听
+		button1.addActionListener(new ChooseButtonListener(jfc, text1, JFileChooser.FILES_AND_DIRECTORIES));
+		// 重置按钮监听
+		reset.addActionListener(new ActionListener()
+		{
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				// tagBox1.setSelectedIndex(0);
+				// tagBox2.setSelectedIndex(0);
+				// tagBox3.setSelectedIndex(0);
+				attrName1.setText(null);
+				attrName2.setText(null);
+				attrName3.setText(null);
+				// opBox1.setSelectedIndex(0);
+				// opBox2.setSelectedIndex(0);
+				// opBox3.setSelectedIndex(0);
+				attrValue1.setText(null);
+				attrValue2.setText(null);
+				attrValue3.setText(null);
+			}
+		});
+		// 查询按钮的监听
 		execute.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				String resPath = text1.getText();
-				String filePath = text2.getText();
-				if (resPath.length() == 0 || filePath.length() == 0)
+				String filePath = text1.getText();
+				if (filePath.length() == 0)
 				{
 					//ERR:请选择目录!
 					JOptionPane.showMessageDialog(null, DmConstants.ERR00002);
 					return;
 				}
 				new WriteMsgThread(area).start();
-				new ModifyTitleThread(resPath, filePath).start();
+				// TODO param
+				// new ModifyTitleThread(filePath).start();
+
 			}
 		});
-		this.add(label0);
+		//文件路径
 		this.add(label1);
-		this.add(label2);
 		this.add(text1);
-		this.add(text2);
 		this.add(button1);
-		this.add(button2);
+		// 查询条件
+		this.add(tagBox1);
+		this.add(tagBox2);
+		this.add(tagBox3);
+		this.add(attrName1);
+		this.add(attrName2);
+		this.add(attrName3);
+		this.add(opBox1);
+		this.add(opBox2);
+		this.add(opBox3);
+		this.add(attrValue1);
+		this.add(attrValue2);
+		this.add(attrValue3);
+		// 按钮
+		this.add(reset);
 		this.add(execute);
+		// 结果
 		this.add(scrollPane);
 		this.add(jfc);
 	}
