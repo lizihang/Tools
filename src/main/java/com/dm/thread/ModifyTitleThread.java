@@ -4,6 +4,7 @@ import com.dm.constant.DmConstants;
 import com.dm.data.DomResData;
 import com.dm.factory.TagFactory;
 import com.dm.queue.ProgressQueue;
+import com.dm.util.StringUtils;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
 import org.dom4j.Element;
@@ -60,8 +61,6 @@ public class ModifyTitleThread extends Thread
 				Document doc = saxReader.read(fPath);
 				// 获取根节点，增加all_c_columns属性
 				Element root = doc.getRootElement();
-				// TODO
-				// readRootAttr(root);
 				// TODO 修改根节点，是否提成单独的功能
 				// modifyRoot(root);
 				// 递归修改标签title
@@ -81,8 +80,9 @@ public class ModifyTitleThread extends Thread
 			System.out.println("---文件：" + fPath + "修改完成");
 			System.out.println("--------------------------------------------------");
 		}
-		ProgressQueue.getInstance().putMsg(errFileStr(errFileList));
-		System.out.println(errFileStr(errFileList));
+		String errMsg = StringUtils.getErrFileStr(errFileList);
+		ProgressQueue.getInstance().putMsg(errMsg);
+		System.out.println(errMsg);
 		ProgressQueue.getInstance().putMsg(String.format(DmConstants.END_MSG, "修改文件title"));
 	}
 
@@ -103,31 +103,13 @@ public class ModifyTitleThread extends Thread
 			root.addAttribute("title", "${}");
 		} else
 		{
-			// TODO 暂时不替换，方便看名称
+			// 暂时不替换，方便看名称
 			// title.setValue("${}");
 		}
 		Attribute options0 = root.attribute("options0");
 		if (options0 == null)
 		{
 			root.addAttribute("options0", "32");
-		}
-	}
-
-	private void readRootAttr(Element root)
-	{
-		Attribute options0 = root.attribute("options0");
-		if (options0 == null)
-		{
-			String msg = "该文件options0属性为空！";
-			throw new RuntimeException(msg);
-		} else
-		{
-			String value = options0.getValue();
-			if (!value.equals("32"))
-			{
-				String msg = "该文件options0属性值不等于32，当前值为：" + value;
-				throw new RuntimeException(msg);
-			}
 		}
 	}
 
@@ -171,22 +153,5 @@ public class ModifyTitleThread extends Thread
 				modifyTitle(element);
 			}
 		}
-	}
-
-	/**
-	 * 输出错误字符串
-	 * @param errFileList
-	 * @return
-	 */
-	private String errFileStr(List<String> errFileList)
-	{
-		StringBuilder sb = new StringBuilder();
-		sb.append("错误文件数量：").append(errFileList.size()).append(";\r\n");
-		sb.append("错误文件列表：").append("\r\n");
-		for (String str : errFileList)
-		{
-			sb.append(str).append("\r\n");
-		}
-		return sb.toString();
 	}
 }

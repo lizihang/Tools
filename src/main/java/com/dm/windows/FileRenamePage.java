@@ -51,9 +51,11 @@ public class FileRenamePage extends Container
 		text3.setBounds(80 + 20, 100, DmConstants.WIDTH_TEXT - 20, DmConstants.HEIGHT_COMMON);
 		button1.setBounds(290, 40, DmConstants.WIDTH_BUTTON, DmConstants.HEIGHT_COMMON);
 		execute.setBounds(290, 100, DmConstants.WIDTH_BUTTON, DmConstants.HEIGHT_COMMON);
+		// 结果
 		area.setLineWrap(true);//如果内容过长，自动换行，在文本域加上滚动条，水平和垂直滚动条始终出现。
+		area.setEditable(false);
 		JScrollPane scrollPane = new JScrollPane(area, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(10, 150, DmConstants.WIDTH_AREA, DmConstants.HEIGHT_AREA);
+		scrollPane.setBounds(10, 130, DmConstants.WIDTH_AREA, DmConstants.HEIGHT_AREA);
 		//选择路径按钮的监听
 		button1.addActionListener(new ChooseButtonListener(jfc, text1, JFileChooser.DIRECTORIES_ONLY));
 		//执行按钮的监听

@@ -23,7 +23,7 @@ public class DmConstants
 	/** 一般高度 */
 	public static final int    HEIGHT_COMMON  = 20;
 	/** 大文本高度 */
-	public static final int    HEIGHT_AREA    = 360;
+	public static final int    HEIGHT_AREA    = 380;
 	/** 文本宽度 */
 	public static final int    WIDTH_LABEL    = 100;
 	/** 输入框宽度 */
@@ -48,6 +48,7 @@ public class DmConstants
 	public static final String ERR00002       = "请选择目录!";
 	public static final String ERR00003       = "请设置标签属性!";
 	public static final String ERR00004       = "标签属性字符串有误!";
+	public static final String ERR00005       = "至少输入一条查询条件!";
 
 	/**==================== DOM常量 ====================*/
 	public static final String C_NAME         = "c";

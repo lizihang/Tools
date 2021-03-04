@@ -1,5 +1,6 @@
 package com.dm.windows;
 
+import com.dm.constant.DmConstants;
 import com.dm.listener.ChooseButtonListener;
 import com.dm.thread.FileDeleteThread;
 import com.dm.thread.WriteMsgThread;
@@ -54,9 +55,11 @@ public class FileDeletePage extends Container
 		//comboBox.setBounds(80, 100, 200, 20);
 		//comboBox.addItem("all");
 		//comboBox.addItem("jar");
+		// 结果
 		area.setLineWrap(true);//如果内容过长，自动换行，在文本域加上滚动条，水平和垂直滚动条始终出现。
+		area.setEditable(false);
 		JScrollPane scrollPane = new JScrollPane(area, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(10, 150, 360, 200);
+		scrollPane.setBounds(10, 130, DmConstants.WIDTH_AREA, DmConstants.HEIGHT_AREA);
 		//选择路径按钮的监听
 		button.addActionListener(new ChooseButtonListener(jfc, text, JFileChooser.DIRECTORIES_ONLY));
 		execute.addActionListener(new ActionListener()

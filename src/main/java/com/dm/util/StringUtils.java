@@ -4,6 +4,7 @@ import com.dm.constant.DmConstants;
 import com.dm.queue.ProgressQueue;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 /**
  * <p>标题：</p>
@@ -66,5 +67,22 @@ public class StringUtils
 		}
 		System.out.println(result);
 		return result;
+	}
+
+	/**
+	 * 输出错误字符串
+	 * @param errFileList
+	 * @return
+	 */
+	public static String getErrFileStr(List<String> errFileList)
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append("错误文件数量：").append(errFileList.size()).append(";\r\n");
+		sb.append("错误文件列表：").append("\r\n");
+		for (String str : errFileList)
+		{
+			sb.append(str).append("\r\n");
+		}
+		return sb.toString();
 	}
 }

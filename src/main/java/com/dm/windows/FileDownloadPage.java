@@ -1,5 +1,6 @@
 package com.dm.windows;
 
+import com.dm.constant.DmConstants;
 import com.dm.listener.ChooseButtonListener;
 import com.dm.util.DownloadFile;
 
@@ -49,9 +50,11 @@ public class FileDownloadPage extends Container
 		text3.setBounds(110, 100, 170, 20);
 		button.setBounds(290, 70, 80, 20);
 		execute.setBounds(290, 100, 80, 20);
+		// 结果
 		area.setLineWrap(true);//如果内容过长，自动换行，在文本域加上滚动条，水平和垂直滚动条始终出现。
+		area.setEditable(false);
 		JScrollPane scrollPane = new JScrollPane(area, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(10, 150, 360, 200);
+		scrollPane.setBounds(10, 130, DmConstants.WIDTH_AREA, DmConstants.HEIGHT_AREA);
 		//选择路径按钮的监听
 		button.addActionListener(new ChooseButtonListener(jfc, text2, JFileChooser.DIRECTORIES_ONLY));
 		//执行按钮的监听

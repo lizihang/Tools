@@ -47,7 +47,7 @@ public class PageFactory
 		return result == null ? EMPTY : result;
 	}
 
-	//将处罚对象注册到这里
+	//将对象注册到这里
 	public static void registerStrategy(String text, Container c)
 	{
 		containerMap.put(text, c);

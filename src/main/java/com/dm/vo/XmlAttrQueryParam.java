@@ -16,7 +16,18 @@ import java.util.List;
  */
 public class XmlAttrQueryParam extends QueryParam
 {
+	private boolean                     readRoot;
 	private List<XmlAttrQueryCondition> conditions;
+
+	public boolean isReadRoot()
+	{
+		return readRoot;
+	}
+
+	public void setReadRoot(boolean readRoot)
+	{
+		this.readRoot = readRoot;
+	}
 
 	public List<XmlAttrQueryCondition> getConditions()
 	{
