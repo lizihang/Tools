@@ -22,15 +22,6 @@ import java.util.Map;
 public class StringUtils
 {
 	/**
-	 * 验证json格式是否正确
-	 * @param str
-	 */
-	public static void validJson(String str)
-	{
-		// TODO
-	}
-
-	/**
 	 * 将字符串转成map类型
 	 * 输入示例：
 	 * str: key1:value1,key2:value2
