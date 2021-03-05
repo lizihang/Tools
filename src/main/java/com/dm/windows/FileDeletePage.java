@@ -25,7 +25,6 @@ import java.io.File;
  */
 public class FileDeletePage extends Container
 {
-	private static final long serialVersionUID = 7562078686217685702L;
 	JLabel       label0   = new JLabel("删除选中文件夹下的所有文件和文件夹");//功能说明
 	JLabel       label1   = new JLabel("选择目录");
 	JLabel       label2   = new JLabel("删除目录下所有文件");

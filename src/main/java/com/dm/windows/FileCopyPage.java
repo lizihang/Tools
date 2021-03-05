@@ -25,7 +25,6 @@ import java.io.File;
  */
 public class FileCopyPage extends Container
 {
-	private static final long serialVersionUID = 7144529904668773187L;
 	JLabel            label0   = new JLabel("将选中文件夹下的所有选中类型的文件复制到目标文件夹");//功能说明
 	JLabel            label1   = new JLabel("选择目录");
 	JLabel            label2   = new JLabel("目标目录");

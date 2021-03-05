@@ -28,7 +28,6 @@ import java.util.ArrayList;
  */
 public class XmlAttrQueryPage extends Container
 {
-	private static final long serialVersionUID = 1986288621554901346L;
 	JLabel            label1     = new JLabel("选择文件目录");
 	JLabel            label2     = new JLabel("标签名称");
 	JTextField        text1      = new JTextField();

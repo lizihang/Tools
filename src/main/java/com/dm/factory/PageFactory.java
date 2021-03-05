@@ -1,10 +1,5 @@
 package com.dm.factory;
 
-import com.dm.windows.FileCopyPage;
-import com.dm.windows.FileDeletePage;
-import com.dm.windows.FileDownloadPage;
-import com.dm.windows.FileRenamePage;
-
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,32 +19,48 @@ import java.util.Map;
 public class PageFactory
 {
 	private static Map<String,Container> containerMap = new HashMap<>();
+	private static Map<String,String>    pageMap      = new HashMap<>();
 
 	static
 	{
-		// TODO 第一次初始化很慢
-		containerMap.put("文件复制", new FileCopyPage());
-		containerMap.put("文件删除", new FileDeletePage());
-		containerMap.put("文件重命名", new FileRenamePage());
-		containerMap.put("文件下载", new FileDownloadPage());
+		// 1.文件相关
+		pageMap.put("文件复制", "com.dm.windows.FileCopyPage");
+		pageMap.put("文件删除", "com.dm.windows.FileDeletePage");
+		pageMap.put("文件重命名", "com.dm.windows.FileRenamePage");
+		pageMap.put("文件下载", "com.dm.windows.FileDownloadPage");
+		// 2.xml相关
+		pageMap.put("xml属性查询", "com.dm.windows.XmlAttrQueryPage");
+		pageMap.put("修改title", "com.dm.windows.ModifyTitlePage");
+		pageMap.put("修改属性", "com.dm.windows.ModifyPropPage");
+		// 3.about
+		pageMap.put("更新日志", "com.dm.windows.AboutPage");
 	}
 
 	private PageFactory()
 	{
 	}
 
-	private static final Container EMPTY = new Container();
-
 	//获取
 	public static Container getPage(String text)
 	{
-		Container result = containerMap.get(text);
-		return result == null ? EMPTY : result;
+		Container container = containerMap.get(text);
+		if (container == null)
+		{
+			container = getPageObject(text);
+			containerMap.put(text, container);
+		}
+		return container;
 	}
 
-	//将对象注册到这里
-	public static void registerStrategy(String text, Container c)
+	private static Container getPageObject(String text)
 	{
-		containerMap.put(text, c);
+		String className = pageMap.get(text);
+		try
+		{
+			return (Container) Class.forName(className).newInstance();
+		} catch (ClassNotFoundException | IllegalAccessException | InstantiationException e)
+		{
+			throw new RuntimeException(e);
+		}
 	}
 }

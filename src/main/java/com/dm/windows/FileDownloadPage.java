@@ -24,7 +24,6 @@ import java.io.File;
  */
 public class FileDownloadPage extends Container
 {
-	private static final long serialVersionUID = -6290874124743113305L;
 	//文件下载页
 	JLabel       label0  = new JLabel("下载文件说明等等");//功能说明
 	JLabel       label1  = new JLabel("请输入下载地址");

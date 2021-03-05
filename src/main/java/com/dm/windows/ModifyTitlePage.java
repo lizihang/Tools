@@ -25,7 +25,6 @@ import java.io.File;
  */
 public class ModifyTitlePage extends Container
 {
-	private static final long serialVersionUID = 1986288621554901346L;
 	JLabel       label0  = new JLabel("资源文件已自动加载ResBundleFT-COMM_zh_CN.inf");//功能说明
 	JLabel       label1  = new JLabel("选择资源文件");
 	JLabel       label2  = new JLabel("选择文件目录");

@@ -46,7 +46,7 @@ public class TagFactory
 		return result == null ? EMPTY : result;
 	}
 
-	//将处罚对象注册到这里
+	//将对象注册到这里
 	public static void registerStrategy(String state, TagStrategy o)
 	{
 		strategyMap.put(state, o);

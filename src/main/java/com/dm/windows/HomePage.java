@@ -1,6 +1,7 @@
 package com.dm.windows;
 
 import com.dm.constant.DmConstants;
+import com.dm.factory.PageFactory;
 import com.dm.listener.OpenTabListener;
 
 import javax.swing.*;
@@ -20,8 +21,7 @@ import java.awt.*;
  */
 public class HomePage
 {
-	JFrame    frame = new JFrame("DM小工具");
-	Container page7 = new XmlAttrQueryPage();//布局7
+	JFrame frame = new JFrame("DM小工具");
 
 	public HomePage()
 	{
@@ -38,7 +38,7 @@ public class HomePage
 		frame.setJMenuBar(createMenu(tabPane));
 		// 设置布局
 		frame.setContentPane(tabPane);
-		tabPane.add("xml属性查询", page7);
+		tabPane.add("xml属性查询", PageFactory.getPage("xml属性查询"));
 		// 窗口可见
 		frame.setVisible(true);
 		// 禁止调大小
@@ -79,13 +79,22 @@ public class HomePage
 		fileDownload.addActionListener(new OpenTabListener(tabPane, fileDownload));
 		/** 二级菜单 */
 		JMenuItem xmlQuery = new JMenuItem("xml属性查询");
-		JMenuItem xmlModify = new JMenuItem("xml属性修改");
+		JMenuItem xmlModifyTitle = new JMenuItem("修改title");
+		JMenuItem xmlModifyProp = new JMenuItem("修改属性");
 		// 二级菜单添加到一级菜单
 		xmlMenu.add(xmlQuery);
-		xmlMenu.add(xmlModify);
+		xmlMenu.add(xmlModifyTitle);
+		xmlMenu.add(xmlModifyProp);
 		// 监听
 		xmlQuery.addActionListener(new OpenTabListener(tabPane, xmlQuery));
-		xmlModify.addActionListener(new OpenTabListener(tabPane, xmlModify));
+		xmlModifyTitle.addActionListener(new OpenTabListener(tabPane, xmlModifyTitle));
+		xmlModifyProp.addActionListener(new OpenTabListener(tabPane, xmlModifyProp));
+		/** 二级菜单 */
+		JMenuItem about = new JMenuItem("更新日志");
+		// 二级菜单添加到一级菜单
+		aboutMenu.add(about);
+		// 监听
+		about.addActionListener(new OpenTabListener(tabPane, about));
 		// 返回
 		return menuBar;
 	}
