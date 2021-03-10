@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.function.Predicate;
 /**
  * <p>标题：</p>
  * <p>功能：</p>
@@ -147,6 +148,56 @@ public class DomResData
 		mfiles.clear();
 		getAllFiles(filePath);
 		getAllModifyFiles(filePath);
+	}
+
+	/**
+	 * 测试
+	 * @param args
+	 */
+	public static void main(String[] args)
+	{
+		String path = "D:\\snsoft90\\sn_ft\\ft-sna\\ft-sna\\sna-ui\\src\\main\\resources\\cfg\\ui\\res\\FT-SNG\\Code";
+		DomResData data = new DomResData();
+		data.getFilesTest(path, abPath -> !abPath.contains("Bank") && !abPath.contains("-bak"));
+		System.out.println(data.getFiles().size());
+		data.getFiles().forEach(System.out::println);
+	}
+
+	/**
+	 * 测试
+	 * @param path
+	 * @param filter
+	 */
+	private void getFilesTest(String path, Predicate<String> filter)
+	{
+		File root = new File(path);
+		if (root.isFile())
+		{
+			files.add(root.getAbsolutePath());
+			return;
+		}
+		File[] folder = root.listFiles();
+		if (folder == null)
+		{
+			ProgressQueue.getInstance().putMsg(path + "目录下没有内容");
+			System.out.println(path + "目录下没有内容");
+			return;
+		}
+		for (File f : folder)
+		{
+			if (f.isDirectory())
+			{
+				getFilesTest(f.getAbsolutePath(), filter);
+			} else
+			{
+				String fileType = f.getName().substring(f.getName().lastIndexOf(".") + 1);
+				// if (fileType.equals(DmConstants.FILE_SUFFIX) && !f.getAbsolutePath().contains("-new") && !f.getAbsolutePath().contains("-bak"))
+				if (fileType.equals(DmConstants.FILE_SUFFIX) && filter.test(f.getAbsolutePath()))
+				{
+					files.add(f.getAbsolutePath());
+				}
+			}
+		}
 	}
 
 	/**
