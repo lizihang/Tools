@@ -56,12 +56,10 @@ public class HomePage
 	{
 		JMenuBar menuBar = new JMenuBar();
 		/** 一级菜单 */
-		JMenu fileMenu = new JMenu("文件");
-		JMenu xmlMenu = new JMenu("xml修改");
+		JMenu fileMenu = new JMenu("文件工具");
+		JMenu xmlMenu = new JMenu("XML工具");
+		JMenu sqlMenu = new JMenu("SQL工具");
 		JMenu aboutMenu = new JMenu("关于");
-		menuBar.add(fileMenu);
-		menuBar.add(xmlMenu);
-		menuBar.add(aboutMenu);
 		/** 二级菜单 */
 		JMenuItem fileCopy = new JMenuItem("文件复制");
 		JMenuItem fileDelete = new JMenuItem("文件删除");
@@ -90,11 +88,22 @@ public class HomePage
 		xmlModifyTitle.addActionListener(new OpenTabListener(tabPane, xmlModifyTitle));
 		xmlModifyProp.addActionListener(new OpenTabListener(tabPane, xmlModifyProp));
 		/** 二级菜单 */
+		JMenuItem sqlFormat = new JMenuItem("SQL格式化");
+		// 二级菜单添加到一级菜单
+		sqlMenu.add(sqlFormat);
+		// 监听
+		sqlFormat.addActionListener(new OpenTabListener(tabPane, sqlFormat));
+		/** 二级菜单 */
 		JMenuItem about = new JMenuItem("更新日志");
 		// 二级菜单添加到一级菜单
 		aboutMenu.add(about);
 		// 监听
 		about.addActionListener(new OpenTabListener(tabPane, about));
+		/** 菜单增加到menuBar */
+		menuBar.add(fileMenu);
+		menuBar.add(xmlMenu);
+		menuBar.add(sqlMenu);
+		menuBar.add(aboutMenu);
 		// 返回
 		return menuBar;
 	}

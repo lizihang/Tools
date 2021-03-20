@@ -32,7 +32,9 @@ public class PageFactory
 		pageMap.put("xml属性查询", "com.dm.windows.XmlAttrQueryPage");
 		pageMap.put("修改title", "com.dm.windows.ModifyTitlePage");
 		pageMap.put("修改属性", "com.dm.windows.ModifyPropPage");
-		// 3.about
+		// 3.sql相关
+		pageMap.put("SQL格式化", "com.dm.windows.SQLFormatPage");
+		// 4.about
 		pageMap.put("更新日志", "com.dm.windows.AboutPage");
 	}
 

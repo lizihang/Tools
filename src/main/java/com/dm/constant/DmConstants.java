@@ -36,7 +36,6 @@ public class DmConstants
 	public static final int    WIDTH_AREA     = 760;
 	/** 宽度间隔 */
 	public static final int    WIDTH_INTERVAL = 10;
-
 	/**==================== 一般常量 ====================*/
 	/** 开始提示语 */
 	public static final String START_MSG      = "%s功能开始！";
@@ -49,7 +48,7 @@ public class DmConstants
 	public static final String ERR00003       = "请设置标签属性!";
 	public static final String ERR00004       = "标签属性字符串有误!";
 	public static final String ERR00005       = "至少输入一条查询条件!";
-
+	public static final String ERR00006       = "请输入SQL！";
 	/**==================== DOM常量 ====================*/
 	public static final String C_NAME         = "c";
 	public static final String BTN_NAME       = "ToolbarBtn";
@@ -60,4 +59,6 @@ public class DmConstants
 	public static final String TOOLBAR_NAME   = "Toolbar";
 	public static final String RECORD_NAME    = "RecordTable";
 	public static final String FILE_SUFFIX    = "xml";
+	/**==================== SQL常量 ====================*/
+	public static final String KEYWORDS       = "select,(select,from,where,order by,group by,";
 }
